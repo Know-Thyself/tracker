@@ -16,9 +16,6 @@ const SignupScreen = ({ navigation }) => {
   }, [navigation])
   return (
     <View style={styles.formContainer}>
-      <Text style={styles.header} h4>
-        Sign Up for Tracker
-      </Text>
       <Input
         label='Email'
         value={email}
@@ -28,7 +25,7 @@ const SignupScreen = ({ navigation }) => {
         placeholder='Enter a valid email'
         inputContainerStyle={styles.inputStyle}
         inputStyle={styles.inputTextStyle}
-        errorStyle={{ color: 'red' }}
+        errorStyle={{ color: 'red', fontSize: 16 }}
         errorMessage={state.emailErrorMessage}
         leftIcon={{ type: 'font-awesome', name: 'envelope' }}
       />
@@ -42,7 +39,7 @@ const SignupScreen = ({ navigation }) => {
         inputStyle={styles.inputTextStyle}
         leftIcon={{ type: 'font-awesome', name: 'key' }}
         secureTextEntry={true}
-        errorStyle={{ color: 'red' }}
+        errorStyle={{ color: 'red', fontSize: 16 }}
         errorMessage={state.passwordErrorMessage}
       />
       {state.errorMessage && (
@@ -89,6 +86,7 @@ const styles = StyleSheet.create({
   formContainer: {
     width: '90%',
     alignSelf: 'center',
+    marginTop: 20,
     // gap: 5,
   },
   header: {
