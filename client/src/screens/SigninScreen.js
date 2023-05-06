@@ -1,11 +1,20 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native'
+import React, { useState, useContext, useEffect } from 'react'
+import { View, Text, StyleSheet, Button, Pressable } from 'react-native'
 import { Form, FormItem } from 'react-native-form-component'
+import { Context } from '../context/authContext'
 
 const SigninScreen = ({ navigation }) => {
+  const { state, signin, clearErrorMsg } = useContext(Context)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const inputRef = React.createRef()
+
+  useEffect(() => {
+    const clearError = () => {
+      clearErrorMsg()
+    }
+    return clearError
+  }, [navigation])
 
   return (
     <View style={styles.formContainer}>
@@ -13,7 +22,12 @@ const SigninScreen = ({ navigation }) => {
         buttonText={'Sign In'}
         buttonStyle={styles.buttonStyle}
         buttonTextStyle={styles.buttonTextStyle}
-        onButtonPress={() => navigation.navigate('Sign Up')}
+        onButtonPress={() => {
+          signin({ email, password })
+          if (state.token) {
+            navigation.navigate('Tracks List')
+          }
+        }}
       >
         <FormItem
           label='Email'
@@ -36,6 +50,13 @@ const SigninScreen = ({ navigation }) => {
         title='Go to main page'
         onPress={() => navigation.navigate('Tracks List', { screen: 'list' })}
       />
+      <View style={styles.buttonTextWrapper}>
+        <Text style={styles.textStyle}>Don't have an account? </Text>
+        <Pressable onPress={() => navigation.navigate('Sign Up')}>
+          <Text style={styles.buttonText}>Sign Up </Text>
+        </Pressable>
+        <Text style={styles.textStyle}>first</Text>
+      </View>
     </View>
   )
 }
@@ -57,6 +78,20 @@ const styles = StyleSheet.create({
   buttonTextStyle: {
     fontSize: 18,
     fontWeight: '600',
+  },
+  buttonTextWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    fontSize: 24,
+  },
+  buttonText: {
+    color: 'rgb(78, 116, 289)',
+    fontSize: 18,
+    fontWeight: 500,
+  },
+  textStyle: {
+    fontSize: 18,
   },
 })
 

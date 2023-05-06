@@ -12,6 +12,10 @@ router.post('/signup', async (req, res) => {
     const token = jwt.sign({ userId: user._id }, process.env.SECRET)
     res.send({ token })
   } catch (error) {
+    console.log(error.message)
+    if (error.message.includes('duplicate')) {
+      console.log('duplicate')
+    }
     res.status(422).send(error.message)
   }
 })

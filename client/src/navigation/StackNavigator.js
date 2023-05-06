@@ -1,4 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import ResolveAuthScreen from '../screens/ResolveAuthScreen'
 import SignupScreen from '../screens/SignupScreen'
 import SigninScreen from '../screens/SigninScreen'
 import BottomTabNavigator from './TabNavigator'
@@ -33,6 +34,7 @@ function getHeaderTitle(route) {
 const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name='Auto Sign In' component={ResolveAuthScreen} />
       <Stack.Screen name='Sign Up' component={SignupScreen} />
       <Stack.Screen name='Sign In' component={SigninScreen} />
       <Stack.Screen
