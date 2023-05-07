@@ -1,48 +1,44 @@
+import { useContext } from 'react'
 import { Text } from '@rneui/themed'
-import { StyleSheet, View } from 'react-native'
-import MapView, { Polyline } from 'react-native-maps'
+import { ActivityIndicator, StyleSheet, View } from 'react-native'
+import MapView, { Polyline, Circle } from 'react-native-maps'
+import { Context as LocationContext } from '../context/locationContext'
 
-const Map = ({ location }) => {
-  const points = []
-  for (let i = 0; i <= 20; i++) {
-    points.push({
-      latitude: 52.408054 + i * 0.01,
-      longitude: -1.510556 + i * 0.01,
-    })
-  }
+const Map = () => {
+  const {
+    state: { currentLocation },
+  } = useContext(LocationContext)
+
   return (
     <View>
-      {location ? (
+      {currentLocation ? (
         <MapView
           style={styles.map}
-          userLocationUpdateInterval={5000}
-          region={{
-            latitude: 37.78825,
-            longitude: -122.4324,
+          initialRegion={{
+            // latitude: currentLocation.coords.latitude,
+            // longitude: currentLocation.coords.longitude,
+            ...currentLocation.coords,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
-          initialRegion={{
-            latitude: location.latitude,
-            longitude: location.longitude,
+          region={{
+            ...currentLocation.coords,
             latitudeDelta: 0.0922,
             longitudeDelta: 0.0421,
           }}
         >
-          <Polyline coordinates={points} />
+          <Circle
+            center={currentLocation.coords}
+            radius={180}
+            strokeColor='orange'
+            fillColor='rgba(158,158,255, 0.4)'
+          />
         </MapView>
       ) : (
-        <MapView
-          style={styles.map}
-          // initialRegion={{
-          //   latitude: location.latitude,
-          //   longitude: location.longitude,
-          //   latitudeDelta: 0.07,
-          //   longitudeDelta: 0.08,
-          // }}
-        >
-          <Polyline coordinates={points} />
-        </MapView>
+        <View style={styles.activityContainer}>
+          <ActivityIndicator size='large' />
+          <Text style={styles.loading}>Loading...</Text>
+        </View>
       )}
     </View>
   )
@@ -51,6 +47,16 @@ const Map = ({ location }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  activityContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 150,
+  },
+  loading: {
+    fontSize: 18,
+    textAlign: 'center',
+    marginTop: 30,
   },
   map: {
     height: 400,
