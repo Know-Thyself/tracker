@@ -18,18 +18,18 @@ const Map = () => {
             // latitude: currentLocation.coords.latitude,
             // longitude: currentLocation.coords.longitude,
             ...currentLocation.coords,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
           }}
           region={{
             ...currentLocation.coords,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
           }}
         >
           <Circle
             center={currentLocation.coords}
-            radius={180}
+            radius={20}
             strokeColor='orange'
             fillColor='rgba(158,158,255, 0.4)'
           />
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   map: {
-    height: 400,
+    height: 340,
   },
 })
 
