@@ -6,8 +6,14 @@ import { Context } from '../context/authContext'
 const AccountScreen = ({ navigation }) => {
   const { signout } = useContext(Context)
   return (
-    <View>
-      <Text h4>Account Screen</Text>
+    <View style={styles.container}>
+      <Text h4 style={styles.header}>
+        Thanks for using our app!
+      </Text>
+      <Text style={styles.text}>
+        You are currently signed in. You can explore the app by using the bottom
+        tab navigation or sign out by just clicking the button below
+      </Text>
       <Button
         title='Sign Out'
         onPress={() => signout(navigation)}
@@ -17,7 +23,7 @@ const AccountScreen = ({ navigation }) => {
         }}
         titleStyle={{
           color: 'white',
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: '300',
         }}
         containerStyle={{
@@ -30,6 +36,19 @@ const AccountScreen = ({ navigation }) => {
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    marginTop: 20,
+  },
+  header: {
+    textAlign: 'center',
+  },
+  text: {
+    fontSize: 16,
+    marginHorizontal: 10,
+    marginVertical: 10,
+  },
+})
 
 export default AccountScreen

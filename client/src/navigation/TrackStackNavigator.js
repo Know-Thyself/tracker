@@ -8,7 +8,7 @@ const TrackStackNavigator = () => {
   return (
     <Stack.Navigator
       initialRouteName='list'
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false, headerBackVisible: true }}
     >
       <Stack.Screen name='list' component={TrackListScreen} />
       <Stack.Screen name='detail' component={TrackDetailScreen} />

@@ -13,6 +13,7 @@ const screenOptionStyle = {
   },
   headerTintColor: 'white',
   headerBackTitle: 'Back',
+  headerShown: false,
 }
 
 function getHeaderTitle(route) {
@@ -31,7 +32,7 @@ function getHeaderTitle(route) {
 
 const BottomTabNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={(screenOptionStyle, { headerShown: false })}>
+    <Tab.Navigator screenOptions={screenOptionStyle}>
       <Tab.Screen
         name='Track Detail'
         component={TrackStackNavigator}
@@ -43,14 +44,14 @@ const BottomTabNavigator = () => {
         }
       />
       <Tab.Screen
+        name='Create a Track'
+        component={CreateTrackScreen}
+        options={{ tabBarLabel: 'Create a Track', title: 'Create a Track' }}
+      />
+      <Tab.Screen
         name='Account'
         component={AccountScreen}
         options={{ tabBarLabel: 'Account' }}
-      />
-      <Tab.Screen
-        name='Create'
-        component={CreateTrackScreen}
-        options={{ tabBarLabel: 'Create' }}
       />
     </Tab.Navigator>
   )
