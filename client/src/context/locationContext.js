@@ -9,7 +9,10 @@ const locationReducer = (state, action) => {
     case 'add_location':
       return { ...state, locations: [...state.locations, action.payload] }
     case 'start_recording':
-      return { ...state, isRecording: true }
+      return {
+        ...state,
+        isRecording: true,
+      }
     case 'stop_recording':
       return { ...state, isRecording: false }
     default:

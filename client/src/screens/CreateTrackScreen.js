@@ -9,11 +9,18 @@ import { useFocusEffect } from '@react-navigation/native'
 import TrackForm from '../components/TrackForm'
 
 const CreateTrackScreen = ({ navigation }) => {
-  const { state, addNewLocation } = useContext(LocationContext)
+  const {
+    state: { isRecording },
+    addNewLocation,
+  } = useContext(LocationContext)
   const [isActive, setIsActive] = useState(true)
-  const [err] = useLocation(isActive, location => {
-    addNewLocation(location, state.isRecording)
-  })
+  const callback = React.useCallback(
+    location => {
+      addNewLocation(location, isRecording)
+    },
+    [isRecording]
+  )
+  const [err] = useLocation(isActive || isRecording, callback)
 
   useFocusEffect(
     React.useCallback(() => {
