@@ -33,9 +33,9 @@ const CreateTrackScreen = ({ navigation }) => {
 
   return (
     <View>
-      <Text h3 style={styles.text}>
+      {/* <Text h3 style={styles.text}>
         Creat a Track
-      </Text>
+      </Text> */}
       <Map />
       {err ? (
         <Text style={{ color: 'red', fontSize: 16 }}>

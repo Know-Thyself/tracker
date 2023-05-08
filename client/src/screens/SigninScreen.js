@@ -25,7 +25,7 @@ const SigninScreen = ({ navigation }) => {
         onButtonPress={() => {
           signin({ email, password })
           if (state.token) {
-            navigation.navigate('Tracks List')
+            navigation.navigate('Create Track')
           }
         }}
       >
@@ -48,7 +48,9 @@ const SigninScreen = ({ navigation }) => {
       </Form>
       <Button
         title='Go to main page'
-        onPress={() => navigation.navigate('Tracks List', { screen: 'list' })}
+        onPress={() =>
+          navigation.navigate('Create Track', { screen: 'Create Track' })
+        }
       />
       <View style={styles.buttonTextWrapper}>
         <Text style={styles.textStyle}>Don't have an account? </Text>

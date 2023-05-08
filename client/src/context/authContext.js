@@ -79,7 +79,7 @@ const localSignin = dispatch => {
     const token = await AsyncStorage.getItem('token')
     if (token) {
       dispatch({ type: 'signin', payload: token })
-      navigation.navigate('Tracks List')
+      navigation.navigate('Create Track')
     } else {
       navigation.navigate('Sign Up')
     }

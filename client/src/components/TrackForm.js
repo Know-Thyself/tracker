@@ -2,6 +2,7 @@ import { Button, Input } from '@rneui/themed'
 import { useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import { Context as LocationContext } from '../context/locationContext'
+import useSaveTrack from '../hooks/useSaveTrack'
 
 const TrackForm = () => {
   const {
@@ -11,6 +12,7 @@ const TrackForm = () => {
     createTrackName,
   } = useContext(LocationContext)
   console.log(locations.length)
+  const [saveTrack] = useSaveTrack()
   return (
     <View style={styles.container}>
       <Input
@@ -30,20 +32,19 @@ const TrackForm = () => {
         onPress={() => {
           isRecording ? stopRecording() : startRecording()
         }}
-        buttonStyle={{
-          backgroundColor: 'rgba(78, 116, 289, 1)',
-          borderRadius: 4,
-        }}
-        titleStyle={{
-          color: 'white',
-          fontSize: 22,
-          fontWeight: '300',
-        }}
-        containerStyle={{
-          width: 180,
-          alignSelf: 'center',
-        }}
+        buttonStyle={styles.button}
+        titleStyle={styles.buttonTitle}
+        containerStyle={styles.buttonContainer}
       />
+      {!isRecording && locations.length ? (
+        <Button
+          title='Save Track'
+          onPress={saveTrack}
+          buttonStyle={styles.button}
+          titleStyle={styles.buttonTitle}
+          containerStyle={styles.buttonContainer}
+        />
+      ) : null}
     </View>
   )
 }
@@ -66,6 +67,20 @@ const styles = StyleSheet.create({
   errorMessage: {
     fontSize: 16,
     color: 'red',
+  },
+  button: {
+    backgroundColor: 'rgba(78, 116, 289, 1)',
+    borderRadius: 4,
+    marginBottom: 10,
+  },
+  buttonTitle: {
+    color: 'white',
+    fontSize: 22,
+    fontWeight: '300',
+  },
+  buttonContainer: {
+    width: 180,
+    alignSelf: 'center',
   },
 })
 

@@ -34,7 +34,12 @@ const BottomTabNavigator = () => {
   return (
     <Tab.Navigator screenOptions={screenOptionStyle}>
       <Tab.Screen
-        name='Track Detail'
+        name='Create a Track'
+        component={CreateTrackScreen}
+        options={{ tabBarLabel: 'Create a Track', title: 'Create a Track' }}
+      />
+      <Tab.Screen
+        name='Track List'
         component={TrackStackNavigator}
         options={
           (({ route }) => ({
@@ -43,11 +48,7 @@ const BottomTabNavigator = () => {
           { tabBarLabel: 'Tracks' })
         }
       />
-      <Tab.Screen
-        name='Create a Track'
-        component={CreateTrackScreen}
-        options={{ tabBarLabel: 'Create a Track', title: 'Create a Track' }}
-      />
+
       <Tab.Screen
         name='Account'
         component={AccountScreen}

@@ -32,7 +32,10 @@ function getHeaderTitle(route) {
 
 const StackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
+    <Stack.Navigator
+      screenOptions={screenOptionStyle}
+      options={({ route }) => ({ title: route.params.name })}
+    >
       <Stack.Screen name='Auto Sign In' component={ResolveAuthScreen} />
       <Stack.Screen
         name='Sign Up'
@@ -41,7 +44,7 @@ const StackNavigator = () => {
       />
       <Stack.Screen name='Sign In' component={SigninScreen} />
       <Stack.Screen
-        name='Tracks List'
+        name='Create Track'
         component={BottomTabNavigator}
         options={({ route }) => ({
           headerTitle: getHeaderTitle(route),

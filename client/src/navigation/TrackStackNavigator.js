@@ -11,7 +11,11 @@ const TrackStackNavigator = () => {
       screenOptions={{ headerShown: false, headerBackVisible: true }}
     >
       <Stack.Screen name='list' component={TrackListScreen} />
-      <Stack.Screen name='detail' component={TrackDetailScreen} />
+      <Stack.Screen
+        name='detail'
+        component={TrackDetailScreen}
+        options={({ route }) => ({ title: route.params.name })}
+      />
     </Stack.Navigator>
   )
 }
