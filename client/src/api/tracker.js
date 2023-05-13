@@ -15,6 +15,7 @@ instance.interceptors.request.use(
     return config
   },
   err => {
+    console.log(err, '<==========axios error')
     return Promise.reject(err)
   }
 )
