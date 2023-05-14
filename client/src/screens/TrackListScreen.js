@@ -16,32 +16,44 @@ const TrackListScreen = ({ navigation }) => {
 
   useFocusEffect(
     useCallback(() => {
-      const fetchTracks = getTracks()
-      return () => fetchTracks()
+      const fetchTracks = async () => {
+        try {
+          await getTracks()
+        } catch (e) {
+          console.error(e)
+        }
+      }
+      fetchTracks()
     }, [])
   )
 
   return (
     <View>
-      <Text style={styles.text}>Your Recorder List of Tracks</Text>
-      <FlatList
-        data={state}
-        keyExtractor={item => item._id}
-        renderItem={({ item }) => {
-          return (
-            <TouchableOpacity>
-              <ListItem>
-                <ListItem.Content>
-                  <ListItem.Title>
-                    {item.name}
-                    <ListItem.Chevron />
-                  </ListItem.Title>
-                </ListItem.Content>
-              </ListItem>
-            </TouchableOpacity>
-          )
-        }}
-      />
+      <Text style={styles.text}>Your Recorded List of Tracks</Text>
+      {state.length ? (
+        <FlatList
+          data={state}
+          keyExtractor={item => item._id}
+          renderItem={({ item }) => {
+            return (
+              <TouchableOpacity
+                onPress={() => navigation.navigate('detail', { _id: item._id })}
+              >
+                <ListItem>
+                  <ListItem.Content>
+                    <ListItem.Title>
+                      {item.name}
+                      <ListItem.Chevron />
+                    </ListItem.Title>
+                  </ListItem.Content>
+                </ListItem>
+              </TouchableOpacity>
+            )
+          }}
+        />
+      ) : (
+        <Text style={styles.text}>Loading ....</Text>
+      )}
       <Button
         title='View Details'
         onPress={() => navigation.navigate('detail', { name: 'Track Detail' })}
