@@ -43,7 +43,11 @@ const TrackListScreen = ({ navigation }) => {
           renderItem={({ item }) => {
             return (
               <TouchableOpacity
-                onPress={() => navigation.navigate('detail', { _id: item._id })}
+                onPress={() =>
+                  navigation.navigate('detail', {
+                    _id: item._id,
+                  })
+                }
               >
                 <ListItem>
                   <ListItem.Content>

@@ -8,7 +8,7 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
 const Stack = createNativeStackNavigator()
 
 const screenOptionStyle = {
-  // headerShown: false,
+  headerShown: false,
   headerBackVisible: false,
   headerStyle: {
     backgroundColor: '#9AC4F8',
