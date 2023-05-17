@@ -4,6 +4,11 @@ import AccountScreen from '../screens/AccountScreen'
 import CreateTrackScreen from '../screens/CreateTrackScreen'
 import TrackStackNavigator from './TrackStackNavigator'
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native'
+import {
+  Ionicons,
+  FontAwesome5,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator()
 
@@ -36,23 +41,38 @@ const BottomTabNavigator = () => {
       <Tab.Screen
         name='Create a Track'
         component={CreateTrackScreen}
-        options={{ tabBarLabel: 'Create a Track', title: 'Create a Track' }}
+        options={{
+          tabBarLabel: 'Add Track',
+          title: 'Create a Track',
+          tabBarIcon: () => (
+            <Ionicons name='add-circle-outline' size={32} color='blue' />
+          ),
+        }}
       />
       <Tab.Screen
         name='Track List'
         component={TrackStackNavigator}
-        options={
-          (({ route }) => ({
-            headerTitle: getHeaderTitle(route),
-          }),
-          { tabBarLabel: 'Tracks' })
-        }
+        options={{
+          tabBarLabel: 'Tracks',
+          tabBarIcon: () => (
+            <FontAwesome5 name='th-list' size={28} color='blue' />
+          ),
+        }}
       />
 
       <Tab.Screen
         name='Account'
         component={AccountScreen}
-        options={{ tabBarLabel: 'Account' }}
+        options={{
+          tabBarLabel: 'Account',
+          tabBarIcon: () => (
+            <MaterialCommunityIcons
+              name='account-circle'
+              size={32}
+              color='blue'
+            />
+          ),
+        }}
       />
     </Tab.Navigator>
   )
