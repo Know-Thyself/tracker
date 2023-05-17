@@ -39,7 +39,7 @@ const CreateTrackScreen = ({ navigation }) => {
       <Map />
       {err ? (
         <Text style={{ color: 'red', fontSize: 16 }}>
-          Please allow the tracker
+          Please allow the tracker to access your location
         </Text>
       ) : null}
       <TrackForm />

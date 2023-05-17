@@ -8,11 +8,9 @@ export default () => {
     state: { name, locations },
     reset,
   } = useContext(LocationContext)
-
   const saveTrack = async () => {
     await createTrack(name, locations)
     reset()
   }
-
   return [saveTrack]
 }

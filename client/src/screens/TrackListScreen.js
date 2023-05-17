@@ -16,6 +16,7 @@ const TrackListScreen = ({ navigation }) => {
 
   useFocusEffect(
     useCallback(() => {
+      let isActive = true
       const fetchTracks = async () => {
         try {
           await getTracks()
@@ -23,7 +24,12 @@ const TrackListScreen = ({ navigation }) => {
           console.error(e)
         }
       }
-      fetchTracks()
+      if (isActive) {
+        fetchTracks()
+      }
+      return () => {
+        isActive = false
+      }
     }, [])
   )
 
