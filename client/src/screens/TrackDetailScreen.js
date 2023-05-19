@@ -1,12 +1,19 @@
 import { View, StyleSheet } from 'react-native'
 import { Context as TrackContext } from '../context/trackContext'
-import { useContext } from 'react'
+import { useContext, useLayoutEffect } from 'react'
 import MapView, { Polyline } from 'react-native-maps'
 
 const TrackDetailScreen = ({ navigation, route }) => {
   const { _id } = route.params
   const { state } = useContext(TrackContext)
   const track = state.find(tr => tr._id === _id)
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: track.name,
+    })
+  }, [navigation, track])
+  
   return (
     <View style={styles.container}>
       <MapView

@@ -22,10 +22,10 @@ const TrackStackNavigator = () => {
       <Stack.Screen
         name='detail'
         component={TrackDetailScreen}
-        options={({ route }) => {
-          const title = route.params.name
-          return { title }
-        }}
+        // options={({ route }) => {
+        //   const title = route.params.name
+        //   return { title }
+        // }}
       />
     </Stack.Navigator>
   )
