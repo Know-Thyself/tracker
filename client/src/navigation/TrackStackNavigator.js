@@ -12,7 +12,7 @@ const screenOptionStyle = {
   },
   headerTintColor: 'white',
   headerBackTitle: 'Back',
-  title: 'Tracks List',
+  title: 'Track List',
 }
 
 const TrackStackNavigator = () => {
@@ -22,7 +22,10 @@ const TrackStackNavigator = () => {
       <Stack.Screen
         name='detail'
         component={TrackDetailScreen}
-        options={{ title: 'Track Details' }}
+        options={({ route }) => {
+          const title = route.params.name
+          return { title }
+        }}
       />
     </Stack.Navigator>
   )

@@ -2,7 +2,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   FlatList,
   TouchableOpacity,
 } from 'react-native'
@@ -46,6 +45,7 @@ const TrackListScreen = ({ navigation }) => {
                 onPress={() =>
                   navigation.navigate('detail', {
                     _id: item._id,
+                    name: item.name,
                   })
                 }
               >
@@ -64,10 +64,6 @@ const TrackListScreen = ({ navigation }) => {
       ) : (
         <Text style={styles.text}>Loading ....</Text>
       )}
-      <Button
-        title='View Details'
-        onPress={() => navigation.navigate('detail', { name: 'Track Detail' })}
-      />
     </View>
   )
 }

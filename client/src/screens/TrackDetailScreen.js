@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { Context as TrackContext } from '../context/trackContext'
 import { useContext } from 'react'
 import MapView, { Polyline } from 'react-native-maps'
@@ -9,7 +9,6 @@ const TrackDetailScreen = ({ navigation, route }) => {
   const track = state.find(tr => tr._id === _id)
   return (
     <View style={styles.container}>
-      <Text style={styles.trackName}>{track.name}</Text>
       <MapView
         initialRegion={{
           longitudeDelta: 0.01,
@@ -22,10 +21,6 @@ const TrackDetailScreen = ({ navigation, route }) => {
           coordinates={track.locations.map(location => location.coords)}
         />
       </MapView>
-      <Button
-        title='Go to Track List'
-        onPress={() => navigation.navigate('list')}
-      />
     </View>
   )
 }
@@ -33,11 +28,6 @@ const TrackDetailScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  trackName: {
-    fontSize: 24,
-    textAlign: 'center',
-    marginVertical: 10,
   },
   map: {
     width: '100%',
